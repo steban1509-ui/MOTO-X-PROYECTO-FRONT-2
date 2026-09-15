@@ -1,0 +1,215 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+html,
+body{
+    height:100%;
+}
+
+body{
+    background:#f4f4f4;
+    padding-top:80px;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+.container{
+    flex:1;
+}
+
+/* BOTÓN VOLVER */
+
+.btn-volver{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:1001;
+    background:black;
+    color:white;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:8px;
+    font-weight:bold;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+
+.btn-volver:hover{
+    background:#081a3d;
+}
+
+/* HEADER */
+
+header{
+    background:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo img{
+    width:100px;
+    height:auto;
+}
+
+.menu{
+    position:absolute;
+    right:40px;
+    display:flex;
+    gap:20px;
+}
+
+.carrito-container{
+    position:relative;
+    display:inline-block;
+}
+
+#contador-carrito{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:red;
+    color:white;
+    min-width:20px;
+    height:20px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* BOTÓN LOGIN */
+
+.btn-login{
+    text-decoration:none;
+    background:#ffffff;
+    color:black;
+    padding:10px 15px;
+    border-radius:8px;
+    display:inline-block;
+    transition:0.3s;
+}
+
+.btn-login:hover{
+    background:#e6e6e6;
+}
+
+/* BOTÓN CARRITO */
+
+.btn-carrito{
+    text-decoration:none;
+    background:#ffffff;
+    color:black;
+    padding:10px 15px;
+    border-radius:8px;
+    display:inline-block;
+    transition:0.3s;
+}
+
+.btn-carrito:hover{
+    background:#e6e6e6;
+}
+
+/* PRODUCTOS */
+
+.productos{
+    width:90%;
+    margin:50px auto;
+}
+
+.productos h2{
+    margin-bottom:20px;
+}
+
+.contenedor{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+
+.card{
+    background:white;
+    width:280px;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+
+    display:flex;
+    flex-direction:column;
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card h3,
+.card h4{
+    padding:10px;
+}
+
+.card p{
+    padding:10px;
+    min-height:60px; /* mismo espacio para todas las descripciones */
+}
+
+.card h4{
+    margin-top:auto; /* empuja precio y botones hacia abajo */
+}
+
+.card button{
+    width:90%;
+    margin:10px;
+    padding:10px;
+    background:black;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card button:hover{
+    background:#333;
+}
+
+.btn-ver-producto{
+    display:block;
+    width:90%;
+    margin:10px auto;
+    padding:10px;
+    background:black;
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+.btn-ver-producto:hover{
+    background:#333;
+}
+/* Evita que el reset de Bootstrap le agregue márgenes a los textos de las tarjetas */
+.card *{ margin:0; }

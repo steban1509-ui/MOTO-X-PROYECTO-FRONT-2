@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotosX</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/frenos.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<header>
+
+    <a href="index.html" class="btn-volver">
+        ← Inicio
+    </a>
+
+    <div class="logo">
+        <img src="img/logo/moto_x_logo.jpg" alt="MotosX">
+    </div>
+
+    <div class="menu">
+
+        <div class="carrito-container">
+
+            <a href="carrito.html"
+               class="btn-carrito"
+               id="icono-carrito">
+               🛒
+            </a>
+
+            <span id="contador-carrito">0</span>
+
+        </div>
+
+        <span id="auth-area">
+            <a href="login.html" class="btn-login">
+                👤
+            </a>
+        </span>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <section class="productos">
+
+        <h2>Frenos seguros</h2>
+
+        <div class="contenedor">
+
+    <!-- Producto 1 -->
+    <div class="card">
+        <img src="img/productos/frenos/Pastilla_Brembo.webp" alt="">
+        <h3>Pastillas de freno Brembo</h3>
+        <p>Pastillas de freno para sistemas de disco.</p>
+        <h4>$215.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(11)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Pastillas de freno Brembo',
+        215000,
+        'img/productos/frenos/Pastilla_Brembo.webp',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="card">
+        <img src="img/productos/frenos/Pastilla_Frasle.png" alt="">
+        <h3>Pastillas de freno Frasle</h3>
+        <p>Pastillas de freno para sistema de disco.</p>
+        <h4>$127.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(12)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Pastillas de freno Frasle',
+        127000,
+        'img/productos/frenos/Pastilla_Frasle.png',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="card">
+        <img src="img/productos/frenos/Pastilla_Ridex.jpg" alt="">
+        <h3>Pastillas de freno Ridex</h3>
+        <p>Set de pastillas de freno.</p>
+        <h4>$95.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(13)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Pastillas de freno Ridex',
+        95000,
+        'img/productos/frenos/Pastilla_Ridex.jpg',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+    <!-- Producto 4 -->
+    <div class="card">
+        <img src="img/productos/frenos/Pastilla_Stark.jpg" alt="">
+        <h3>Pastillas de freno Stark</h3>
+        <p>Pastillas de freno para vehículos.</p>
+        <h4>$136.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(14)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Pastillas de freno Stark',
+        136000,
+        'img/productos/frenos/Pastilla_Stark.jpg',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+    <!-- Producto 5 -->
+    <div class="card">
+        <img src="img/productos/frenos/Pastillas_Bosch.jpg" alt="">
+        <h3>Pastillas de freno Bosch</h3>
+        <p>Pastillas de freno de alto rendimiento.</p>
+        <h4>$174.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(15)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Pastillas de freno Bosch',
+        174000,
+        'img/productos/frenos/Pastillas_Bosch.jpg',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+</div>
+
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 MotosX. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Modal de producto -->
+<div class="modal fade" id="modalProducto" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalProductoNombre">Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+
+        <div id="modalProductoCarrusel" class="carousel slide mb-3">
+          <div class="carousel-inner" id="modalProductoImagenes"></div>
+          <div id="modalProductoControles">
+            <button class="carousel-control-prev" type="button" data-bs-target="#modalProductoCarrusel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" style="filter:invert(1) grayscale(1);"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#modalProductoCarrusel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" style="filter:invert(1) grayscale(1);"></span>
+            </button>
+          </div>
+        </div>
+
+        <p id="modalProductoDescripcion"></p>
+        <h4 id="modalProductoPrecio" class="mb-3"></h4>
+
+        <p class="mb-1"><strong>Vendedor:</strong> <span id="modalProductoVendedor"></span></p>
+        <p><strong>Ubicación del vendedor:</strong> <span id="modalProductoUbicacion"></span></p>
+
+        <h6>Características</h6>
+        <ul id="modalProductoCaracteristicas"></ul>
+
+        <hr>
+
+        <h6>Calificación <span id="modalProductoPromedio"></span></h6>
+        <div id="modalProductoResenas" class="mb-3"></div>
+
+        <hr>
+
+        <h6>Deja tu reseña</h6>
+        <div id="modalProductoEstrellas" class="mb-2 fs-3"></div>
+        <textarea id="modalProductoComentario" class="form-control mb-2" rows="2" placeholder="Escribe tu opinión (opcional)"></textarea>
+        <button class="btn btn-outline-dark btn-sm" onclick="enviarResena()">Enviar reseña</button>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-dark" id="modalProductoAgregar">Añadir al carrito</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/auth-nav.js"></script>
+<script src="js/producto-modal.js"></script>
+
+</body>
+</html>
