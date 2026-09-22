@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotosX</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/aceites.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<header>
+
+    <a href="index.html" class="btn-volver">
+        ← Inicio
+    </a>
+
+    <div class="logo">
+        <img src="img/logo/moto_x_logo.jpg" alt="MotosX">
+    </div>
+
+    <div class="menu">
+
+        <div class="carrito-container">
+
+            <a href="carrito.html"
+               class="btn-carrito"
+               id="icono-carrito">
+               🛒
+            </a>
+
+            <span id="contador-carrito">0</span>
+
+        </div>
+
+        <span id="auth-area">
+            <a href="login.html" class="btn-login">
+                👤
+            </a>
+        </span>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <section class="productos">
+
+        <h2>Aceites para todas las referencias</h2>
+<div class="contenedor">
+
+    <!-- Producto 1 -->
+    <div class="card">
+        <img src="img/productos/aceites/Castrol.png" alt="">
+        <h3>Castrol Power 1</h3>
+        <p>Aceite lubricante con tecnología sintética para motores de 4 tiempos.</p>
+        <h4>$45.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(6)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Castrol Power 1',
+        45000,
+        'img/productos/aceites/Castrol.png',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="card">
+        <img src="img/productos/aceites/repsol.jpeg" alt="">
+        <h3>Repsol Moto Sport 10W-40</h3>
+        <p>Aceite para motocicletas de 4 tiempos.</p>
+        <h4>$35.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(7)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Repsol Moto Sport 10W-40',
+        35000,
+        'img/productos/aceites/repsol.jpeg',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="card">
+        <img src="img/productos/aceites/ecstar.jpeg" alt="">
+        <h3>Ecstar R7000 10W-40</h3>
+        <p>Lubricante semisintético para motores 4T.</p>
+        <h4>$54.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(8)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Ecstar R7000 10W-40',
+        54000,
+        'img/productos/aceites/ecstar.jpeg',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+    <!-- Producto 4 -->
+    <div class="card">
+        <img src="img/productos/aceites/mobil_super.jpeg" alt="">
+        <h3>Mobil Super Ultra 20W-50</h3>
+        <p>Aceite con protección para motores 4T.</p>
+        <h4>$35.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(9)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Mobil Super Ultra 20W-50',
+        35000,
+        'img/productos/aceites/mobil_super.jpeg',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+    <!-- Producto 5 -->
+    <div class="card">
+        <img src="img/productos/aceites/motul dorado.jpeg" alt="">
+        <h3>Motul 7100 20W-50</h3>
+        <p>Lubricante 100% sintético para 4 tiempos.</p>
+        <h4>$82.000</h4>
+
+        <a href="javascript:void(0)" class="btn-ver-producto" onclick="verProducto(10)">
+            Ver producto
+        </a>
+
+        <button onclick="agregarCarrito(
+        'Motul 7100 20W-50',
+        82000,
+        'img/productos/aceites/motul dorado.jpeg',
+        event
+        )">
+            Añadir al carrito
+        </button>
+    </div>
+
+</div>
+
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 MotosX. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Modal de producto -->
+<div class="modal fade" id="modalProducto" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalProductoNombre">Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+
+        <div id="modalProductoCarrusel" class="carousel slide mb-3">
+          <div class="carousel-inner" id="modalProductoImagenes"></div>
+          <div id="modalProductoControles">
+            <button class="carousel-control-prev" type="button" data-bs-target="#modalProductoCarrusel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" style="filter:invert(1) grayscale(1);"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#modalProductoCarrusel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" style="filter:invert(1) grayscale(1);"></span>
+            </button>
+          </div>
+        </div>
+
+        <p id="modalProductoDescripcion"></p>
+        <h4 id="modalProductoPrecio" class="mb-3"></h4>
+
+        <p class="mb-1"><strong>Vendedor:</strong> <span id="modalProductoVendedor"></span></p>
+        <p><strong>Ubicación del vendedor:</strong> <span id="modalProductoUbicacion"></span></p>
+
+        <h6>Características</h6>
+        <ul id="modalProductoCaracteristicas"></ul>
+
+        <hr>
+
+        <h6>Calificación <span id="modalProductoPromedio"></span></h6>
+        <div id="modalProductoResenas" class="mb-3"></div>
+
+        <hr>
+
+        <h6>Deja tu reseña</h6>
+        <div id="modalProductoEstrellas" class="mb-2 fs-3"></div>
+        <textarea id="modalProductoComentario" class="form-control mb-2" rows="2" placeholder="Escribe tu opinión (opcional)"></textarea>
+        <button class="btn btn-outline-dark btn-sm" onclick="enviarResena()">Enviar reseña</button>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-dark" id="modalProductoAgregar">Añadir al carrito</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/auth-nav.js"></script>
+<script src="js/producto-modal.js"></script>
+
+</body>
+</html>

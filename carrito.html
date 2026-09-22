@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - MotosX</title>
+
+    <link rel="stylesheet" href="css/carrito.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left">
+
+        <div class="overlay">
+
+            <h1>Tu compra está casi lista</h1>
+
+            <p>
+                Revisa tus productos seleccionados y
+                continúa con el proceso de compra.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <a href="index.html" class="btn-volver">
+            ← Inicio
+        </a>
+
+        <h1 class="titulo">MI CARRITO 🛒</h1>
+
+         <div class="productos-scroll">
+         <div id="lista-carrito"></div>
+     </div>
+
+          <div class="total">
+
+            <h2 id="total">
+                Total: $0
+            </h2>
+
+            <div class="acciones">
+
+                <a href="index.html" class="btn-seguir">
+                    ← Seguir comprando
+                </a>
+
+                <button
+                    class="btn-vaciar"
+                    onclick="confirmarVaciarCarrito()">
+                    Vaciar carrito
+                </button>
+
+                <button class="btn-comprar" onclick="finalizarCompra()">
+                    Finalizar compra
+                </button>
+
+            </div>
+
+        </div>
+
+         <footer>
+         <p>© 2026 MotosX. Todos los derechos reservados.</p>
+         </footer>
+
+    </div>
+
+</div>
+
+<script>
+
+let carrito = JSON.parse(
+    localStorage.getItem("carrito")
+) || [];
+
+let lista = document.getElementById(
+    "lista-carrito"
+);
+
+let total = 0;
+
+function mostrarCarrito(){
+
+    lista.innerHTML = "";
+
+    total = 0;
+
+    if(carrito.length === 0){
+
+        lista.innerHTML = `
+            <div class="producto">
+                <h2>Tu carrito está vacío</h2>
+            </div>
+        `;
+
+        document.getElementById("total")
+        .innerHTML = "Total: $0";
+
+        return;
+    }
+
+    carrito.forEach((producto, indice) => {
+
+        total +=
+        producto.precio *
+        producto.cantidad;
+
+        lista.innerHTML += `
+
+        <div class="producto">
+
+            <img
+                src="${producto.imagen}"
+                alt="${producto.nombre}"
+                class="producto-img">
+
+            <div class="info">
+
+                <h2>${producto.nombre}</h2>
+
+                <p class="precio">
+                    $${producto.precio.toLocaleString()}
+                </p>
+
+                <div class="cantidad">
+
+                    <button
+                        class="btn-cantidad"
+                        onclick="disminuirCantidad(${indice})">
+                        -
+                    </button>
+
+                    <span>${producto.cantidad}</span>
+
+                    <button
+                        class="btn-cantidad"
+                        onclick="aumentarCantidad(${indice})">
+                        +
+                    </button>
+
+                </div>
+
+                <button
+                    class="btn-eliminar"
+                    onclick="eliminarProducto(${indice})">
+                    🗑️ Eliminar
+                </button>
+
+            </div>
+
+        </div>
+        `;
+    });
+
+    document.getElementById("total")
+    .innerHTML =
+    `Total: $${total.toLocaleString()}`;
+}
+
+function aumentarCantidad(indice){
+
+    carrito[indice].cantidad++;
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+
+    mostrarCarrito();
+}
+
+function disminuirCantidad(indice){
+
+    if(carrito[indice].cantidad > 1){
+
+        carrito[indice].cantidad--;
+
+    }else{
+
+        carrito.splice(indice, 1);
+    }
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+
+    mostrarCarrito();
+}
+
+function eliminarProducto(indice){
+
+    carrito.splice(indice, 1);
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+
+    mostrarCarrito();
+}
+
+function vaciarCarrito(){
+
+    localStorage.removeItem(
+        "carrito"
+    );
+
+    carrito = [];
+
+    mostrarCarrito();
+}
+
+function confirmarVaciarCarrito(){
+
+    if(carrito.length === 0){
+        Swal.fire({
+            icon: "info",
+            title: "Tu carrito ya está vacío",
+            confirmButtonColor: "#212529"
+        });
+        return;
+    }
+
+    Swal.fire({
+        icon: "warning",
+        title: "¿Vaciar el carrito?",
+        text: "Se eliminarán todos los productos seleccionados.",
+        showCancelButton: true,
+        confirmButtonText: "Sí, vaciar",
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#dc3545",
+        cancelButtonColor: "#6c757d"
+    }).then((resultado) => {
+        if(resultado.isConfirmed){
+            vaciarCarrito();
+            Swal.fire({
+                icon: "success",
+                title: "Carrito vaciado",
+                confirmButtonColor: "#212529"
+            });
+        }
+    });
+}
+
+function finalizarCompra(){
+
+    if(carrito.length === 0){
+        Swal.fire({
+            icon: "info",
+            title: "Tu carrito está vacío",
+            text: "Añade productos antes de finalizar la compra.",
+            confirmButtonColor: "#212529"
+        });
+        return;
+    }
+
+    fetch("php/auth/sesion_actual.php")
+    .then(res => res.json())
+    .then(sesion => {
+
+        if(sesion.logueado){
+            enviarPedido(sesion.nombre, sesion.correo);
+        }else{
+            Swal.fire({
+                title: "Datos para tu pedido",
+                html:
+                    '<input id="swal-nombre" class="swal2-input" placeholder="Nombre completo">' +
+                    '<input id="swal-correo" class="swal2-input" type="email" placeholder="Correo electrónico">',
+                confirmButtonText: "Confirmar compra",
+                confirmButtonColor: "#212529",
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                preConfirm: () => {
+                    const nombre = document.getElementById("swal-nombre").value.trim();
+                    const correo = document.getElementById("swal-correo").value.trim();
+
+                    if(!nombre || !correo){
+                        Swal.showValidationMessage("Por favor completa nombre y correo");
+                        return false;
+                    }
+
+                    return { nombre: nombre, correo: correo };
+                }
+            }).then((resultado) => {
+                if(resultado.isConfirmed){
+                    enviarPedido(resultado.value.nombre, resultado.value.correo);
+                }
+            });
+        }
+    })
+    .catch(() => {
+        Swal.fire({
+            icon: "error",
+            title: "Error de conexión",
+            text: "No se pudo verificar la sesión. Intenta de nuevo.",
+            confirmButtonColor: "#212529"
+        });
+    });
+}
+
+function enviarPedido(nombre, correo){
+
+    fetch("php/pedidos/crear_pedido.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            nombre: nombre,
+            correo: correo,
+            productos: carrito,
+            total: total
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.ok){
+            Swal.fire({
+                icon: "success",
+                title: "¡Compra realizada!",
+                text: "Pedido #" + data.pedido_id + " registrado correctamente.",
+                confirmButtonColor: "#212529"
+            }).then(() => {
+                vaciarCarrito();
+            });
+        }else{
+            Swal.fire({
+                icon: "error",
+                title: "No se pudo procesar la compra",
+                text: data.mensaje,
+                confirmButtonColor: "#212529"
+            });
+        }
+    })
+    .catch(() => {
+        Swal.fire({
+            icon: "error",
+            title: "Error de conexión",
+            text: "No se pudo contactar al servidor. Intenta de nuevo.",
+            confirmButtonColor: "#212529"
+        });
+    });
+}
+
+mostrarCarrito();
+
+</script>
+
+</body>
+</html>

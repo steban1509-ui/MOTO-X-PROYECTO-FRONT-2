@@ -1,0 +1,7 @@
+[22-Sep-2026 02:07:02 America/Bogota] PDOException: SQLSTATE[HY000] [2002] No such file or directory in /Applications/XAMPP/xamppfiles/htdocs/motosx/app/core/Database.php:16
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/motosx/app/core/Database.php(16): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 /Applications/XAMPP/xamppfiles/htdocs/motosx/app/core/Database.php(28): Database::conexion()
+#2 /Applications/XAMPP/xamppfiles/htdocs/motosx/app/models/Categoria.php(7): Database::consulta('SELECT id, slug...')
+#3 /Applications/XAMPP/xamppfiles/htdocs/motosx/public/index.php(8): Categoria::todas()
+#4 {main}
