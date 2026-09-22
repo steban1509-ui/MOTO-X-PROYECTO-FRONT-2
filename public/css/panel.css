@@ -1,0 +1,161 @@
+/* =====================================================================
+   Panel del vendedor, panel del administrador y "Mis compras"
+   (mismos colores del sitio: negro + naranja #ff5b00)
+   ===================================================================== */
+
+body{
+    background:#f5f5f5;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.navbar{
+    min-height:80px;
+}
+
+.panel-titulo{
+    font-weight:bold;
+}
+
+.panel-titulo small{
+    font-size:1rem;
+    font-weight:normal;
+    color:#6c757d;
+}
+
+.card-panel{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.card-panel > .card-header{
+    background:white;
+    border-bottom:2px solid #ff5b00;
+    border-radius:15px 15px 0 0;
+    font-weight:bold;
+    padding:15px 20px;
+}
+
+.stat{
+    border-radius:15px;
+    background:white;
+    padding:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    height:100%;
+}
+
+.stat .numero{
+    font-size:2rem;
+    font-weight:bold;
+    line-height:1;
+}
+
+.stat .etiqueta{
+    color:#6c757d;
+    font-size:.9rem;
+}
+
+.btn-naranja{
+    background:#ff5b00;
+    color:white;
+    font-weight:bold;
+    border:none;
+}
+
+.btn-naranja:hover,
+.btn-naranja:focus{
+    background:#e04d00;
+    color:white;
+}
+
+.btn-naranja:disabled{
+    background:#f3a57a;
+    color:white;
+}
+
+.miniatura{
+    width:56px;
+    height:56px;
+    object-fit:cover;
+    border-radius:8px;
+    background:#eee;
+}
+
+.fila-inactiva td{
+    background:#fafafa !important;
+    color:#8a8a8a;
+}
+
+.fila-inactiva .miniatura{
+    filter:grayscale(1);
+    opacity:.6;
+}
+
+.galeria-edicion{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.galeria-edicion .item{
+    width:110px;
+    text-align:center;
+    font-size:.8rem;
+}
+
+.galeria-edicion img{
+    width:110px;
+    height:90px;
+    object-fit:cover;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+#vistaPrevia img{
+    width:90px;
+    height:75px;
+    object-fit:cover;
+    border-radius:8px;
+    margin:4px;
+    border:2px dashed #ff5b00;
+}
+
+.table > :not(caption) > * > *{
+    vertical-align:middle;
+}
+
+.nav-pills .nav-link.active{
+    background:#212529;
+}
+
+.nav-pills .nav-link{
+    color:#212529;
+}
+
+.item-historial img{
+    width:48px;
+    height:48px;
+    object-fit:cover;
+    border-radius:6px;
+}
+
+footer{
+    font-size:15px;
+}
+
+/* Anula el efecto hover de las tarjetas de la tienda (style.css) dentro de los paneles */
+.card-panel:hover{
+    transform:none;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+/* v4: ficha de producto */
+.card-panel img.imagen-ficha{
+    height:420px;
+    object-fit:contain;
+}
+.card-panel img.miniatura{
+    width:56px;
+    height:56px;
+    object-fit:cover;
+}

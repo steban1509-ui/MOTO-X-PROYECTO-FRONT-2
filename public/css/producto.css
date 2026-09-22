@@ -1,0 +1,308 @@
+/* =====================================================================
+   FICHA DE PRODUCTO — producto.php (v4.1)
+   Botones interactivos: selector de cantidad, añadir, comprar y compartir.
+   ===================================================================== */
+
+.ficha-titulo{
+    font-size:2.1rem;
+    line-height:1.15;
+}
+
+.ficha-precio{
+    color:#212529;
+}
+
+/* ---------- Miniaturas de la galería ---------- */
+.miniaturas{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.card-panel img.miniatura-ficha{
+    width:64px;
+    height:64px;
+    object-fit:cover;
+    border-radius:10px;
+    border:2px solid #e6e6e6;
+    cursor:pointer;
+    transition:border-color .2s, transform .2s;
+}
+
+.card-panel img.miniatura-ficha:hover{
+    transform:translateY(-2px);
+}
+
+.card-panel img.miniatura-ficha.activa{
+    border-color:#ff5b00;
+}
+
+/* ---------- Caja de compra ---------- */
+.caja-compra{
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:16px;
+    padding:20px;
+    margin:24px 0;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+/* Selector de cantidad  −  [ 2 ]  + */
+.selector-cantidad{
+    display:inline-flex;
+    align-items:center;
+    border:1px solid #ddd;
+    border-radius:12px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.selector-cantidad .paso{
+    width:42px;
+    height:44px;
+    border:0;
+    background:#f4f4f4;
+    font-size:1.3rem;
+    font-weight:bold;
+    line-height:1;
+    color:#212529;
+    cursor:pointer;
+    transition:background .2s, color .2s;
+}
+
+.selector-cantidad .paso:hover:not(:disabled){
+    background:#ff5b00;
+    color:#fff;
+}
+
+.selector-cantidad .paso:disabled{
+    opacity:.35;
+    cursor:not-allowed;
+}
+
+.selector-cantidad input{
+    width:64px;
+    height:44px;
+    border:0;
+    border-left:1px solid #eee;
+    border-right:1px solid #eee;
+    text-align:center;
+    font-weight:bold;
+    font-size:1.05rem;
+    -moz-appearance:textfield;
+}
+
+.selector-cantidad input::-webkit-outer-spin-button,
+.selector-cantidad input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin:0;
+}
+
+/* ---------- Botones de acción ---------- */
+.acciones-compra{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn-accion{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:50px;
+    padding:12px 26px;
+    border:0;
+    border-radius:12px;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    transition:transform .18s, box-shadow .18s, background .25s, color .25s;
+}
+
+.btn-accion:active:not(:disabled){
+    transform:scale(.97);
+}
+
+.btn-accion:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.btn-agregar{
+    background:#ff5b00;
+    color:#fff;
+    flex:1 1 220px;
+}
+.btn-agregar:hover:not(:disabled){
+    background:#e04d00;
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(255,91,0,.35);
+}
+.btn-agregar.listo{
+    background:#198754;
+    box-shadow:0 10px 22px rgba(25,135,84,.35);
+}
+.btn-agregar.cargando{
+    cursor:progress;
+}
+
+.btn-comprar{
+    background:#212529;
+    color:#fff;
+}
+.btn-comprar:hover:not(:disabled){
+    background:#000;
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(0,0,0,.3);
+}
+
+.btn-compartir{
+    background:#fff;
+    color:#212529;
+    border:1px solid #ddd;
+}
+.btn-compartir:hover{
+    background:#f4f4f4;
+    transform:translateY(-2px);
+}
+
+/* Girito de carga dentro del botón */
+.spinner{
+    width:16px;
+    height:16px;
+    border:2px solid rgba(255,255,255,.4);
+    border-top-color:#fff;
+    border-radius:50%;
+    display:inline-block;
+    animation:girar .7s linear infinite;
+}
+
+@keyframes girar{
+    to{ transform:rotate(360deg); }
+}
+
+/* ---------- Características y reseñas ---------- */
+.lista-caracteristicas{
+    padding-left:20px;
+}
+.lista-caracteristicas li{
+    margin-bottom:6px;
+}
+
+.estrellas-seleccion{
+    font-size:1.8rem;
+    line-height:1;
+}
+.estrellas-seleccion .estrella{
+    cursor:pointer;
+    transition:transform .15s;
+    display:inline-block;
+}
+.estrellas-seleccion .estrella:hover{
+    transform:scale(1.2);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 575px){
+    .acciones-compra .btn-accion{
+        flex:1 1 100%;
+    }
+    .ficha-titulo{
+        font-size:1.6rem;
+    }
+}
+
+/* =====================================================================
+   Ruta de navegación (Inicio / Categoría / Producto)
+   ===================================================================== */
+.ruta-producto{
+    background:#fff;
+    border:1px solid #ececeb;
+    border-radius:14px;
+    padding:8px 12px;
+    margin-bottom:28px;
+    box-shadow:0 4px 16px rgba(0,0,0,.05);
+    overflow-x:auto;
+}
+
+.ruta-lista{
+    display:flex;
+    align-items:center;
+    flex-wrap:nowrap;
+    gap:2px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+/* Separador ">" entre cada paso */
+.ruta-lista li + li::before{
+    content:"›";
+    color:#c9c9c9;
+    font-size:1.25rem;
+    line-height:1;
+    padding:0 6px;
+}
+
+.ruta-lista li{
+    display:flex;
+    align-items:center;
+    min-width:0;
+}
+
+.ruta-enlace{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 14px;
+    border-radius:999px;
+    color:#495057;
+    font-weight:600;
+    font-size:.92rem;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background .2s, color .2s, transform .2s;
+}
+
+.ruta-enlace i{
+    font-size:.85rem;
+    color:#ff5b00;
+    transition:color .2s;
+}
+
+.ruta-enlace:hover{
+    background:#fff1e8;
+    color:#ff5b00;
+    transform:translateY(-1px);
+}
+
+.ruta-actual{
+    display:inline-block;
+    max-width:min(60vw, 420px);
+    padding:7px 16px;
+    border-radius:999px;
+    background:#212529;
+    color:#fff;
+    font-weight:700;
+    font-size:.92rem;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+@media (max-width: 575px){
+    /* En móvil se mantiene el texto (por si no cargan los íconos) y la caja
+       se desplaza de lado si la ruta es larga. */
+    .ruta-producto{
+        padding:6px 10px;
+    }
+    .ruta-enlace,
+    .ruta-actual{
+        font-size:.82rem;
+        padding:6px 12px;
+    }
+    .ruta-actual{
+        max-width:none;
+    }
+}

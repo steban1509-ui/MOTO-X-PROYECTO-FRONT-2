@@ -1,0 +1,303 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+
+body{
+    background:#f4f4f4;
+}
+
+.titulo{
+    text-align:center;
+    margin-bottom:40px;
+    color: #fa0000;
+}
+
+.btn-volver{
+    display:inline-block;
+    width:fit-content;
+    align-self:flex-start;
+    background:black;
+    color:white;
+    padding:10px 20px;
+    text-decoration:none;
+    border-radius:10px;
+    margin-bottom:30px;
+}
+
+#lista-carrito{
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.producto{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.producto-img{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.info{
+    flex:1;
+}
+
+.info h2{
+    margin-bottom:10px;
+}
+
+.precio{
+    color:green;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.btn-eliminar{
+    margin-top:10px;
+    background:#fa0000;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-eliminar:hover{
+    background:#2b0606;
+}
+
+.total{
+    background:white;
+    border-top:1px solid #ddd;
+    padding-top:20px;
+    margin-top:10px;
+}
+
+.acciones{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.btn-seguir{
+    text-decoration:none;
+    background:#ddd;
+    color:black;
+    padding:12px 20px;
+    border-radius:8px;
+}
+
+.btn-vaciar{
+    background:#dc3545;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.btn-comprar{
+    background:#08b13b;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+footer{
+    background:white;
+    text-align:center;
+    padding:10px;
+    margin-top:50px;
+}
+
+.cantidad{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:10px;
+}
+
+.btn-cantidad{
+    width:35px;
+    height:35px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#081a3d;
+    color:white;
+
+    font-size:20px;
+    cursor:pointer;
+}
+
+.btn-cantidad:hover{
+    opacity:0.9;
+}
+
+.cantidad span{
+    font-size:18px;
+    font-weight:bold;
+    min-width:20px;
+    text-align:center;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+.container{
+    display:flex;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+/* IZQUIERDA */
+
+.left{
+    width:50%;
+
+    background:url("../img/fondos/fondo_carrito_compra.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    position:relative;
+}
+
+.left::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+}
+
+.overlay{
+    position:absolute;
+
+    z-index:2;
+
+    color:white;
+
+    left:60px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    max-width:500px;
+}
+
+.overlay h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.overlay p{
+    font-size:26px;
+    line-height:1.5;
+}
+
+/* DERECHA */
+
+.right{
+    width:50%;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:30px;
+    background:white;
+}
+
+footer{
+    margin-top:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-top:1px solid #ddd;
+    color:#666;
+    font-size:14px;
+    padding:0px 0;
+}
+
+footer p{
+    margin:0;
+}
+
+.titulo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.btn-volver{
+    display:inline-block;
+
+    background:black;
+    color:white;
+
+    padding:10px 20px;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    margin-bottom:30px;
+}
+
+.productos-scroll{
+    flex:1;
+    overflow-y:auto;
+    padding-right:10px;
+}
+
+.producto{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.producto:has(h2:only-child){
+    justify-content:center;
+    min-height:200px;
+}
+
+/* v4: botón + deshabilitado al llegar al stock */
+.btn-cantidad:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+.info .stock-disponible{
+    margin:4px 0;
+}

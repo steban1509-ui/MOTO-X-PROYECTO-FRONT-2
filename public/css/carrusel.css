@@ -1,0 +1,248 @@
+/* =====================================================================
+   HERO CARRUSEL — index.php (v4)
+   Archivo propio para que los estilos no dependan de style.css.
+   ===================================================================== */
+
+.hero-carrusel{
+    background:#0d0d0f;
+    overflow:hidden;
+}
+
+/* ---------- Diapositiva ---------- */
+.hero-slide{
+    position:relative;
+    display:flex;
+    align-items:center;
+    height:480px;
+    color:#fff;
+    text-decoration:none;
+    overflow:hidden;
+}
+.hero-slide:hover,
+.hero-slide:focus{
+    color:#fff;
+    text-decoration:none;
+}
+
+/* Fondo: la misma foto muy desenfocada y oscura, solo para dar color */
+.hero-fondo{
+    position:absolute;
+    inset:-60px;
+    background-size:cover;
+    background-position:center;
+    filter:blur(40px) saturate(1.2);
+    opacity:.35;
+    transform:scale(1.1);
+}
+
+/* Degradado para que el texto siempre se lea */
+.hero-degradado{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(90deg, rgba(13,13,15,.96) 0%, rgba(13,13,15,.85) 40%, rgba(13,13,15,.35) 100%),
+        radial-gradient(circle at 80% 50%, rgba(255,91,0,.25), transparent 55%);
+}
+
+/* ---------- Contenido (texto + imagen) ---------- */
+.hero-contenido{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    align-items:center;
+    gap:48px;
+    padding:0 80px;             /* deja espacio a las flechas */
+}
+
+.hero-texto{
+    max-width:540px;
+}
+
+.hero-categoria{
+    display:inline-block;
+    background:#ff5b00;
+    color:#fff;
+    padding:5px 14px;
+    border-radius:999px;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.hero-carrusel .hero-titulo{
+    color:#fff;
+    font-size:clamp(1.8rem, 3.4vw, 3rem);
+    font-weight:800;
+    line-height:1.1;
+    margin:16px 0 12px;
+}
+
+.hero-descripcion{
+    color:rgba(255,255,255,.78);
+    font-size:1.1rem;
+    margin:0 0 28px;
+}
+
+.hero-acciones{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.hero-precio{
+    font-size:2rem;
+    font-weight:800;
+    color:#fff;
+}
+
+.hero-boton{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:#ff5b00;
+    color:#fff;
+    font-weight:700;
+    padding:12px 24px;
+    border-radius:10px;
+    transition:background .25s, transform .25s;
+}
+.hero-slide:hover .hero-boton{
+    background:#e04d00;
+    transform:translateX(4px);
+}
+
+/* Imagen del producto en una tarjeta blanca (las fotos de producto tienen fondo blanco) */
+.hero-imagen{
+    justify-self:end;
+    width:100%;
+    max-width:440px;
+    height:360px;
+    background:#fff;
+    border-radius:20px;
+    padding:24px;
+    box-shadow:0 25px 60px rgba(0,0,0,.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:transform .4s;
+}
+.hero-imagen img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+}
+.hero-slide:hover .hero-imagen{
+    transform:scale(1.03);
+}
+
+/* ---------- Flechas ---------- */
+.hero-carrusel .hero-control{
+    width:72px;
+    opacity:1;
+    z-index:3;
+}
+.hero-control-icono{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .25s;
+}
+.hero-control:hover .hero-control-icono{
+    background:#ff5b00;
+    border-color:#ff5b00;
+}
+
+/* ---------- Indicadores (puntos) ---------- */
+.hero-carrusel .hero-indicadores{
+    margin-bottom:18px;
+    z-index:3;
+}
+.hero-carrusel .hero-indicadores [data-bs-target]{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    border:0;
+    margin:0 5px;
+    background:#fff;
+    opacity:.4;
+    transition:width .3s, opacity .3s;
+}
+.hero-carrusel .hero-indicadores .active{
+    width:28px;
+    border-radius:999px;
+    background:#ff5b00;
+    opacity:1;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px){
+    .hero-contenido{
+        padding:0 64px;
+        gap:24px;
+    }
+    .hero-imagen{
+        height:280px;
+    }
+    .hero-descripcion{
+        font-size:1rem;
+    }
+}
+
+@media (max-width: 767px){
+    .hero-slide{
+        height:auto;
+        min-height:520px;
+        padding:28px 0 56px;
+    }
+    .hero-degradado{
+        background:linear-gradient(180deg, rgba(13,13,15,.55) 0%, rgba(13,13,15,.95) 55%);
+    }
+    .hero-contenido{
+        grid-template-columns:1fr;
+        padding:0 20px;
+        gap:22px;
+        text-align:center;
+    }
+    .hero-imagen{
+        order:-1;
+        justify-self:center;
+        max-width:260px;
+        height:210px;
+        padding:14px;
+    }
+    .hero-texto{
+        max-width:none;
+    }
+    .hero-carrusel .hero-titulo{
+        margin:12px 0 8px;
+    }
+    .hero-descripcion{
+        display:none;
+    }
+    .hero-acciones{
+        justify-content:center;
+        gap:14px;
+    }
+    .hero-precio{
+        font-size:1.6rem;
+    }
+    .hero-carrusel .hero-control{
+        display:none;          /* en móvil se desliza con el dedo */
+    }
+}
+
+/* Íconos de flecha propios de Bootstrap (no dependen de Font Awesome) */
+.hero-control-icono .carousel-control-prev-icon,
+.hero-control-icono .carousel-control-next-icon{
+    width:18px;
+    height:18px;
+}
